@@ -3,7 +3,7 @@
 In simple linear regression, we aim to model a linear relationship between a single input feature ($x$) and a continuous target variable ($y$).
 
 <img width="3024" height="2160" alt="Image" src="https://github.com/user-attachments/assets/a863dc81-e3ad-40ab-b87f-f2f8ddc47a6b" />
-*Credit to [Arjun Moti]/(https://arjun-mota.github.io/posts/linear-regression/)*
+*Credit to [Arjun Moti]/[https://arjun-mota.github.io/posts/linear-regression/]*
 
 ## Approximation
 $$
@@ -34,7 +34,7 @@ $$
 **Gradient Descent** is an iterative optimization algorithm we use to find the minimum of a function. In this case, we use it to find the values of $w$ and $b$ that minimize the MSE cost function.
 
 <img width="898" height="636" alt="Image" src="https://github.com/user-attachments/assets/e4a55ddb-0c5b-49cb-9ab4-86779323f376" />
-*Credit to [Naveen]/(https://www.nomidl.com/machine-learning/gradient-descent-for-linear-regression/)*
+*Credit to [Naveen]/[https://www.nomidl.com/machine-learning/gradient-descent-for-linear-regression/]*
 
 To implement this, we need to calculate the partial derivatives of the cost function.
 
@@ -62,7 +62,7 @@ $$
 ## The Learning Rate ($\alpha$)
 
 <img width="791" height="394" alt="Image" src="https://github.com/user-attachments/assets/9bbbbc20-0617-4c4d-921d-4bf6f6aa3411" />
-*Credit to [Naveen]/(https://www.nomidl.com/machine-learning/gradient-descent-for-linear-regression/)*
+*Credit to [Naveen]/[https://www.nomidl.com/machine-learning/gradient-descent-for-linear-regression/]*
 
 -  **If the learning rate is too low**: The model will learn very slowly, requiring many iterations to converge to the minimum.
 -  **If the learning rate is too fast**: The algorithm can overshoot the minimum, causing the loss to possibly diverge, failing to find the minimum.
