@@ -10,7 +10,7 @@ In K-Nearest Neighbors, we aim to classify a new data point based on the labels 
 KNN doesn't "learn" a model. Instead, it memorizes the entire training dataset (a process known as **lazy learning**). To predict the class of a new data point, it performs the following steps:
 
 1.  **Calculates** the distance from the new point to every point in the training data.
-2.  **Identifies** the '$K$' nearest data points (the "neighbors").
+2.  **Identifies** the $K$ nearest data points (the "neighbors").
 3.  **Assigns** the new data point the class label that is most common among its $K$ neighbors (a **majority vote**).
 
 ***
