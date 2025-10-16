@@ -78,3 +78,5 @@ This process is repeated until all samples are correctly classified or a maximum
 ## 💡 Key Property: Convergence
 
 The Perceptron Learning Algorithm is guaranteed to converge to a separating hyperplane (the final optimal $\mathbf{w}$ and $b$) **if and only if** the training data is **linearly separable**. If the data is not linearly separable (e.g., the XOR problem), the algorithm will oscillate and never converge.
+
+*this is a README i generated with Gemini... a more proper README will take its place in the upcoming days.*
