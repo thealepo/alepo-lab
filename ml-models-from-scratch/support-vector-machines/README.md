@@ -1,33 +1,50 @@
-find best hyperplane that best seperates data
-hyperplane
+# Support Vector Machine (SVM) from Scratch
 
-linear model
-w*x - b = 0
-w*xi - b >= 1  if yi=1
-w8xi - b <= -1  if yi=-1
-yi(w*xi - b) >= 1
+This project is a Python implementation of a linear Support Vector Machine (SVM) for binary classification, built from scratch using NumPy. The model is trained using Stochastic Gradient Descent (SGD).
 
-cost function
-hinge loss
-l = max(0 , 1 - yi(w*xi - b))
-l = {0 if y*f(x) >= 1 , 1-y*f(x) otherwise}
+## Core Concepts
 
-add regularization
-J = lambda|w|^2 + 1/nsum(i=1,n, max(0,1-yi(wxi-b)))
-if yi*f(x) >= 1:
-Ji = lambda|w|^2
-else:
-Ji = lambda|w|^2 + 1 - yi(w*xi-b)
+An SVM is a supervised learning model that finds the optimal **hyperplane** to separate data points into two classes. The "best" hyperplane is the one that maximizes the **margin**, which is the distance between the hyperplane and the nearest data points from each class. These closest points are called **support vectors**.
 
-gradients
-if yi*f(x) >= 1:
-    dJi/dw_k = 2 lambda w_k
-    dJi/db = 0
-else:
-    dJi/dw_k = 2 lambda w_k - yi * xi
-    dJi/db = yi
+### The Hyperplane
 
-update rule
-for each training sample xi:
-    w := -alpha * dw
-    b := -alpha * db
+A linear hyperplane can be defined by the equation:
+
+$$
+w \cdot x - b = 0
+$$
+
+Where:
+* `w` is the weight vector, normal to the hyperplane.
+* `x` is the input feature vector.
+* `b` is the bias term.
+
+### Decision Rule
+
+For a binary classification problem with labels $y \in \{-1, 1\}$, the decision rule for any data point $x_i$ is:
+
+* If $w \cdot x_i - b \geq 1$, predict class $y_i = 1$.
+* If $w \cdot x_i - b \leq -1$, predict class $y_i = -1$.
+
+This can be combined into a single condition for all correctly classified points:
+
+$$
+y_i(w \cdot x_i - b) \geq 1
+$$
+
+## Optimization
+
+To find the optimal `w` and `b`, we need to minimize a cost function. The SVM cost function consists of two parts: a regularization term to maximize the margin and a loss term to penalize misclassifications.
+
+### Cost Function (Hinge Loss + Regularization)
+
+The cost function is defined as:
+
+$$
+J = \lambda \|w\|^2 + \frac{1}{n} \sum_{i=1}^{n} \max(0, 1 - y_i(w \cdot x_i - b))
+$$
+
+Where:
+* $\lambda$ is the regularization parameter. It controls the trade-off between maximizing the margin and minimizing classification error.
+
+*this is a README i generated with Gemini... a more proper README will take its place in the upcoming days.*
