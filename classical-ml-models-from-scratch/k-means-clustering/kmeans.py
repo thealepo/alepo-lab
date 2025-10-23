@@ -63,7 +63,10 @@ class KMeans:
         centroids = np.zeros((self.K , self.n_features))  # tuples
 
         for i,cluster in enumerate(clusters):
-            cluster_mean = np.mean(self.X[i] , axis=0)
+            if not cluster:
+                continue
+
+            cluster_mean = np.mean(self.X[cluster] , axis=0)
             centroids[i] = cluster_mean
 
         return centroids
@@ -84,7 +87,9 @@ class KMeans:
     def plot(self):
         fig, ax = plt.subplots(figsize=(12, 8))
 
-        ax.scatter(self.X[:, 0] , self.X[:, 1] , cmap='viridis' , s=50 , alpha=0.8)
+        labels = self._get_cluster_labels(self.clusters)
+
+        ax.scatter(self.X[:, 0] , self.X[:, 1] , c=labels , cmap='viridis' , s=50 , alpha=0.8)
 
         for point in self.centroids:
             ax.scatter(*point , marker='x' , color='black' , linewidth=3 , s=150)
