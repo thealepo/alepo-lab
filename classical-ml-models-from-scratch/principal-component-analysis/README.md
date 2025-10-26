@@ -70,10 +70,7 @@ $$
     Sort the eigenvector-eigenvalue pairs in **descending order** based on the eigenvalues ($\lambda$). The eigenvector with the largest eigenvalue is $PC_1$.
 
 5.  **Choose $k$ Components**
-    Decide how many dimensions ($k$) to keep. This is often done by calculating the *explained variance*:
-    $$
-    \text{Explained Variance} = \frac{\sum_{i=1}^{k} \lambda_i}{\sum_{i=1}^{d} \lambda_i}
-    $$
+    Decide how many dimensions ($k$) to keep.
     We often choose $k$ such that we keep 95% or 99% of the total variance. These top $k$ eigenvectors form our **projection matrix $W$**.
 
 6.  **Transform the Data**
