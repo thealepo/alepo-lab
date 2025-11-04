@@ -3,3 +3,4 @@ WORK ON READMES FOR:
 - naive-bayes
 - pca
 - svm
+- adaboost
