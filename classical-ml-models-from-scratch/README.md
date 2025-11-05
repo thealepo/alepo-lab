@@ -4,3 +4,4 @@ WORK ON READMES FOR:
 - pca
 - svm
 - adaboost
+- k-means clustering
