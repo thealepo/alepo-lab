@@ -7,8 +7,6 @@ This repository is a collection of my practice projects, learning explorations, 
 ## Projects Catalog
 
 Here is the curated list of projects within this repository. Each folder contains a detailed README.md with information on the project.
-
-* **[Classical ML Models from Scratch](./classical-ml-models-from-scratch/)**
 ---
 
 ### Cloning a Single Project
