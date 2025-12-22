@@ -3,13 +3,13 @@ import torch.nn as nn
 from torch.nn import functional as F
 
 # hyperparams
-batch_size = 32
-block_size = 8
-max_iters = 3000
-eval_interval = 300
-learning_rate = 1e-2
-device = 'cuda' if torch.cuda.is_available() else 'cpu'
-eval_iters = 200
+batch_size = 32 # how many independent sequences will we process in parallel?
+block_size = 8 # the maximum context length (Time)
+max_iters = 3000 # total training steps (gradient updates)
+eval_interval = 300 # how often loss is evaluated
+learning_rate = 1e-2 # learning rate (step size of gradient descent)
+device = 'cuda' if torch.cuda.is_available() else 'cpu' # use GPU if available
+eval_iters = 200 # how many batches to average over when checking loss
 
 torch.manual_seed(42)
 
@@ -49,7 +49,7 @@ def estimate_loss():
         losses = torch.zeros(eval_iters)
         for k in range(eval_iters):
             X , Y = get_batch(split)
-            logits , loss = model(X , Y)
+            _ , loss = model(X , Y)
             losses[k] = loss.item()
         out[split] = losses.mean()
     model.train()
