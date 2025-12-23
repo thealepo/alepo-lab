@@ -62,12 +62,17 @@ class BigramLanguageModel(nn.Module):
         super().__init__()
         # each token reads off the logits for the next token from a lookup table
         self.token_embedding_table = nn.Embedding(vocab_size , n_embed)
+        self.position_embedding_table = nn.Embedding(block_size , n_embed)
         self.lm_head = nn.Linear(n_embed , vocab_size)
     
     def forward(self , index , targets=None):
+        B , T = index.shape
         # index & targets are (B,T) tensor of integers
         tok_embed = self.token_embedding_table(index)  # (B,T,C)
-        logits = self.lm_head(tok_embed)  # (B,T,vocab_size)
+        pos_embed = self.position_embedding_table(torch.arange(T , device=device))  # (T,C)
+        x = tok_embed + pos_embed  # (B,T,C)
+        logits = self.lm_head(x)  # (B,T,vocab_size)
+
         if targets is None:
             loss = None
         else:
