@@ -71,13 +71,13 @@ class Head(nn.Module):
         k , q = self.key(x) , self.query(x)  # (B,T,C)
         # computing the affinities (attention scores)
         weights = q @ k.transpose(-2,-1) * C**-0.5  # (B,T,C) @ (B,C,T) -> (B,T,T)
-        weights = weights.masked_fill(self.tril[:T,:T] == 0 , float('-inf'))  # (B,T,T)
+        weights = weights.masked_fill(self.tril[:T,:T] == 0 , float('-inf'))  # (B,T,T)  # decoder block
         weights = F.softmax(weights , dim=-1)  # (B,T,T)
         # weighted aggregation of the values
         v = self.value(x)  # (B,T,C)
         out = weights @ v  # (B,T,T) @ (B,T,C) -> (B,T,C)
         return out
-        
+
 # simple bigram model
 class BigramLanguageModel(nn.Module):
     def __init__(self):
@@ -85,6 +85,7 @@ class BigramLanguageModel(nn.Module):
         # each token reads off the logits for the next token from a lookup table
         self.token_embedding_table = nn.Embedding(vocab_size , n_embed)
         self.position_embedding_table = nn.Embedding(block_size , n_embed)
+        self.sa_head = Head(n_embed)
         self.lm_head = nn.Linear(n_embed , vocab_size)
     
     def forward(self , index , targets=None):
@@ -93,6 +94,7 @@ class BigramLanguageModel(nn.Module):
         tok_embed = self.token_embedding_table(index)  # (B,T,C)
         pos_embed = self.position_embedding_table(torch.arange(T , device=device))  # (T,C)
         x = tok_embed + pos_embed  # (B,T,C)
+        x = self.sa_head(x)  # applying one head of self-attention
         logits = self.lm_head(x)  # (B,T,vocab_size)
 
         if targets is None:
@@ -107,8 +109,10 @@ class BigramLanguageModel(nn.Module):
     def generate(self , index , max_new_tokens):
         # index is (B,T) array of indices in the current context
         for _ in range(max_new_tokens):
+            # crop index to the last block_size tokens
+            index_cond = index[:, -block_size:]
             # get predictions
-            logits , loss = self(index)
+            logits , loss = self(index_cond)
             # focus only on the last time step
             logits = logits[: , -1 , :]  # (B,C)
             # applying softmax
