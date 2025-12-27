@@ -3,14 +3,17 @@ import torch.nn as nn
 from torch.nn import functional as F
 
 # hyperparams
-batch_size = 32 # how many independent sequences will we process in parallel?
-block_size = 8 # the maximum context length (Time)
+batch_size = 64 # how many independent sequences will we process in parallel?
+block_size = 256 # the maximum context length (Time)
 max_iters = 5000 # total training steps (gradient updates)
-eval_interval = 300 # how often loss is evaluated
-learning_rate = 1e-3 # learning rate (step size of gradient descent)
+eval_interval = 500 # how often loss is evaluated
+learning_rate = 3e-4 # learning rate (step size of gradient descent)
 device = 'cuda' if torch.cuda.is_available() else 'cpu' # use GPU if available
 eval_iters = 200 # how many batches to average over when checking loss
-n_embed = 32 # embedding dimension
+n_embed = 384 # embedding dimension
+n_heads = 6
+n_layers = 6
+dropout = 0.2
 
 torch.manual_seed(42)
 
@@ -129,6 +132,7 @@ class BigramLanguageModel(nn.Module):
             Block(n_embed , n_heads=4) ,
             Block(n_embed , n_heads=4) ,
             Block(n_embed , n_heads=4) ,
+            nn.LayerNorm(n_embed) ,
         )
         self.lm_head = nn.Linear(n_embed , vocab_size)
     
