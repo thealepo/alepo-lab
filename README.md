@@ -7,6 +7,9 @@ This repository is a collection of my practice projects, learning explorations, 
 ## Projects Catalog
 
 Here is the curated list of projects within this repository. Each folder contains a detailed README.md with information on the project.
+- classical ml models from scratch
+- my first website
+- karpathy's zero-to-hero
 ---
 
 ### Cloning a Single Project
