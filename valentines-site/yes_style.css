@@ -1,9 +1,10 @@
 body {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     height: 100vh;
     margin: 0;
+    padding: 40px 20px;
     background-color: #f9e3e3;
     font-family: 'Arial', sans-serif;
 }
@@ -21,4 +22,29 @@ body {
     width: 100%; 
     max-width: 500px; 
     height: auto; 
+}
+
+.date_details {
+    margin-top: 20px;
+    padding: 25px;
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0 , 0 , 0 , 0.1);
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.date_details h2 {
+    margin-top: 0;
+    color: #d32f2f;
+}
+
+.date_details ul {
+    list-style: none;
+    padding: 0;
+}
+
+.date_details li {
+    margin: 10px 0;
 }
