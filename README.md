@@ -10,6 +10,7 @@ Here is the curated list of projects within this repository. Each folder contain
 - classical ml models from scratch
 - my first website
 - karpathy's zero-to-hero
+- a valentines day site
 ---
 
 ### Cloning a Single Project
